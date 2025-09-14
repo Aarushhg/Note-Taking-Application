@@ -1,0 +1,245 @@
+/* General styling */ 
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #8c53ff; /* Purple background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white; /* White text color for readability */
+    flex-direction: column; /* Stack elements vertically */ 
+}
+
+/* App Container */
+#notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 120px;
+    max-width: 90%;
+    height: calc(100vh - 80px); 
+    overflow-y: auto;
+}
+
+/* Sticky Note Styling */
+.note {
+    width: 200px;
+    height: 300px; /* Increased height to provide more space */
+    background-color: #f8b4b4; /* Pink sticky note */
+    border: 2px solid black; /* Black border around notes */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Note Text */
+.note-text {
+    font-size: 14px;
+    color: #333;
+    word-wrap: break-word;
+    max-height: 180px; /* Reduced height to leave space for toolbar */
+    overflow-y: auto;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 80%;
+    white-space: pre-wrap;
+    padding-bottom: 5px; /* Padding for space at the bottom */
+    position: relative;
+    min-height: 20px;
+}
+
+.note-text[data-placeholder]::before {
+    content: attr(data-placeholder); /* Use the custom placeholder attribute */
+    color: #aaa; /* Light gray color for placeholder */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    pointer-events: none;
+    font-size: 14px;
+}
+
+/* Placeholder text styling */
+.note-text::before {
+    content: "Add Note here"; /* Default text */
+    color: #aaa; /* Light gray color for placeholder */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    pointer-events: none; /* Allow clicking in text area */
+    font-size: 14px;
+}
+
+/* When user starts typing, hide placeholder */
+.note-text:focus::before {
+    content: "";
+}
+
+/* Add random background color to each note */
+.note[data-color="pink"] {
+    background-color: #f8b4b4;
+}
+
+.note[data-color="yellow"] {
+    background-color: #f9f871;
+}
+
+.note[data-color="blue"] {
+    background-color: #a4caff;
+}
+
+.note[data-color="green"] {
+    background-color: #b8f8c0;
+}
+
+.note[data-color="coral"] {
+    background-color: #f8c4b4;
+}
+
+/* Button Styling */
+button {
+    background-color: #ff5733; /* Button color */
+    padding: 10px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Button Hover Effect */
+button:hover {
+    background-color: #ff2a00;
+}
+
+button.active {
+    background-color: #d94d00; /* Darker color when active */
+}
+
+/* Add Note Button */
+#add-note-btn {
+    background-color: #ff5733; /* Button color */
+    width: 40px; /* Set smaller width */
+    height: 40px; /* Set smaller height */
+    border-radius: 50%; /* Make it round */
+    color: white;
+    font-size: 24px; /* Larger size for the + symbol */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    position: fixed;
+    bottom: 20px; /* Adjust distance from the bottom */
+    right: 20px; /* Adjust distance from the right */
+}
+
+#add-note-btn:hover {
+    background-color: #ff2a00; /* Darker color on hover */
+}
+
+/* Toolbar for text formatting */
+#toolbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* Button Styling for Text Formatting */
+#toolbar button {
+    font-size: 14px;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    padding: 6px 10px; /* Smaller size */
+    border-radius: 50%; /* Round button corners */
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Button Hover Effect */
+#toolbar button:hover {
+    background-color: #ff2a00;
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
+
+/* Active button (pressed state) */
+#toolbar button.active {
+    background-color: #d94d00; /* Darker color when active */
+}
+
+/* Styling for Bold, Italic, Underline, Cut buttons */
+button#bold-btn {
+    font-weight: bold;
+}
+
+button#italic-btn {
+    font-style: italic;
+}
+
+button#underline-btn {
+    text-decoration: underline;
+}
+
+button#cut-btn {
+    text-decoration: line-through;
+}
+
+/* Styling for Bold, Italic, Underline, Cut buttons */
+button#bold-btn.active {
+    background-color: #d94d00; /* Active color for bold */
+}
+
+button#italic-btn.active {
+    background-color: #d94d00; /* Active color for italic */
+}
+
+button#underline-btn.active {
+    background-color: #d94d00; /* Active color for underline */
+}
+
+button#cut-btn.active {
+    background-color: #d94d00; /* Active color for cut */
+}
+/* Sticky Notes Title */
+#app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #8c53ff; /* Purple background */
+    padding: 10px;
+    color: white;
+    position: fixed; /* Fixes the title at the top */
+    top: 10px;
+    left: 10px;
+    width: 100%; /* Ensures the title stretches across the top */
+    z-index: 100; /* Keeps the title above other elements */
+    font-family: 'Pacifico', cursive;  /* Cool font */
+    font-size: 48px;  /* Make the title bigger */
+    color: white;
+    font-weight: bold;
+    z-index: 10;
+}
+
+#app-header h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#app-title {
+    margin-left: 20px; /* Provides some spacing from the left edge */
+    font-size: 40px;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Popout Note</title>
+<style>
+  body {
+    margin: 0; padding: 10px;
+    font-family: sans-serif;
+    background-color: var(--note-color, yellow);
+  }
+  #note {
+    width: 100%;
+    height: 100%;
+    overflow-wrap: break-word;
+  }
+</style>
+</head>
+<body>
+  <div id="note" contenteditable="true"></div>
+
+  <script>
+    function getQueryParam(param) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(param);
+    }
+
+    // Decode base64 content
+    const contentBase64 = getQueryParam('content');
+    const noteContent = atob(contentBase64 || '');
+    const color = getQueryParam('color') || 'yellow';
+
+    document.body.style.setProperty('--note-color', color);
+
+    const noteDiv = document.getElementById('note');
+    noteDiv.innerHTML = noteContent;
+  </script>
+</body>
+</html>
