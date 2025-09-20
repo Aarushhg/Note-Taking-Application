@@ -35,7 +35,7 @@ This project provides a fun and efficient way to create, organize, and format no
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/sticky-notes-app.git
+   git clone https://github.com/your-username/Note-Taking-Application.git
 
 2. Navigate into the project folder:
 
